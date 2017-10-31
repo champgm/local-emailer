@@ -1,0 +1,72 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>_</h1>
+    <form #emailForm="ngForm"
+          (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="power">Address</label>
+        <select class="form-control"
+                id="address"
+                [(ngModel)]="email.address"
+                name="address">
+          <option *ngFor="let address of addresses"
+                  [value]="address">{{address}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text"
+               class="form-control"
+               id="subject"
+               required
+               [(ngModel)]="email.subject"
+               name="subject"
+               #subject="ngModel">
+      </div>
+      <div [hidden]="subject.valid || subject.pristine"
+           class="alert alert-danger">
+        Subject is required
+      </div>
+
+
+      <div class="form-group">
+        <label for="message">Body</label>
+        <input type="text"
+               class="form-control"
+               id="message"
+               [(ngModel)]="email.body"
+               name="body">
+      </div>
+
+      <button type="button"
+              class="btn btn-default"
+              (click)="emailForm.reset(); newMessage()">New Message</button>
+
+      <button type="submit"
+              class="btn btn-success"
+              [disabled]="!emailForm.form.valid">Submit</button>
+
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h2>The following message was sent:</h2>
+    <div class="row">
+      <div class="col-xs-3">Address</div>
+      <div class="col-xs-9  pull-left">{{ email.address }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Subject</div>
+      <div class="col-xs-9 pull-left">{{ email.subject }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">Body</div>
+      <div class="col-xs-9 pull-left">{{ email.body }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary"
+            (click)="emailForm.reset(); newMessage()">New Message</button>
+  </div>
+</div>
