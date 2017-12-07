@@ -1,6 +1,24 @@
 <div class="btn-group">
-  <label *ngFor="let label of Object.keys(emailMap)"
-         class="btn btn-primary"
-         [(ngModel)]="radioModel"
-         btnRadio="label">{{label}}</label>
+
+  <div *ngFor="let label of Object.keys(emailMap); let i = index">
+    <label *ngIf="index == 0"
+           class="btn btn-primary"
+           [(ngModel)]="radioModel"
+           btnRadio="Left">{{label}}</label>
+
+    <label *ngIf="index != 1 && index != Object.keys(emailMap).length - 1"
+           class="btn btn-primary"
+           [(ngModel)]="radioModel"
+           btnRadio="Middle">{{label}}</label>
+
+    <label *ngIf="index == Object.keys(emailMap).length - 1"
+           class="btn btn-primary"
+           [(ngModel)]="radioModel"
+           btnRadio="Right">{{label}}</label>
+  </div>
+  <!-- <div class="btn-group">
+          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Left">Left</label>
+          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Middle">Middle</label>
+          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Right">Right</label>
+        </div> -->
 </div>
