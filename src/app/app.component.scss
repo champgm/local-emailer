@@ -1,0 +1,21 @@
+.container {
+  min-height: 400px;
+  width: 100%;
+  display: flex;
+}
+
+.email-buttons {
+
+}
+.subject, .body {
+  width: 264px;
+  margin-bottom: 25px;
+}
+
+.subject {
+  margin-top: 25px;
+}
+
+.submit {
+  margin-left: 192px;
+}

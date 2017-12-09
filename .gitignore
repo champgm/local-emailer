@@ -43,3 +43,4 @@ Thumbs.db
 
 # Configuration
 **/config.json
+**/configuration.ts

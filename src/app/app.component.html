@@ -1,24 +1,31 @@
-<div class="btn-group">
-
-  <div *ngFor="let label of Object.keys(emailMap); let i = index">
-    <label *ngIf="index == 0"
-           class="btn btn-primary"
-           [(ngModel)]="radioModel"
-           btnRadio="Left">{{label}}</label>
-
-    <label *ngIf="index != 1 && index != Object.keys(emailMap).length - 1"
-           class="btn btn-primary"
-           [(ngModel)]="radioModel"
-           btnRadio="Middle">{{label}}</label>
-
-    <label *ngIf="index == Object.keys(emailMap).length - 1"
-           class="btn btn-primary"
-           [(ngModel)]="radioModel"
-           btnRadio="Right">{{label}}</label>
+<!-- <div fxLayout="column"
+     class="container"
+     fxLayoutAlign="space-around center"> -->
+<div fxLayout="column"
+     class="container"
+     fxLayoutAlign="center center">
+  <div>
+    <app-email-buttons class="email-buttons "
+                       [(style.width.px)]="buttonsWidth"
+                       [emailMap]="emailMap"> </app-email-buttons>
   </div>
-  <!-- <div class="btn-group">
-          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Left">Left</label>
-          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Middle">Middle</label>
-          <label class="btn btn-primary" [(ngModel)]="radioModel" btnRadio="Right">Right</label>
-        </div> -->
+
+  <div>
+    <input [(ngModel)]="subject"
+           [(style.width.px)]="subjectWidth"
+           class="form-control subject">
+  </div>
+
+  <div>
+    <textarea [(ngModel)]="body"
+              [(style.width.px)]="bodyWidth"
+              rows="5"
+              cols="30"
+              class="form-control body"></textarea>
+  </div>
+  <div fxLayout="row">
+    <label class="btn btn-primary submit"
+           (click)="submit()"
+           fxFlexAlign="end">Submit</label>
+  </div>
 </div>

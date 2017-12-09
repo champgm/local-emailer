@@ -4,15 +4,30 @@ import { ConfigurationService } from './configuration.service/configuration.serv
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  private emailMap: any;
-  private selectedEmail: string;
+  emailMap: any;
+  selectedEmail: string;
+  buttonsWidth: number;
+  body: string;
+  bodyWidth: number;
+  subject: string;
+  subjectWidth: number;
 
   constructor(private configurationService: ConfigurationService) { }
 
-  async ngOnInit(): Promise<void> {
-    this.emailMap = await this.configurationService.getEmails();
+  ngOnInit(): void {
+    this.emailMap = this.configurationService.getEmails();
   }
+
+  submit(): void {
+    console.log(`selectedEmail: ${this.selectedEmail}`);
+    console.log(`buttonsWidth: ${this.buttonsWidth}`);
+    console.log(`body: ${this.body}`);
+    console.log(`bodyWidth: ${this.bodyWidth}`);
+    console.log(`subject: ${this.subject}`);
+    console.log(`subjectWidth: ${this.subjectWidth}`);
+  }
+
 }
