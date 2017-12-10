@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './configuration.service/configuration.service';
+import { EmailService } from './email.service/email.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,13 @@ export class AppComponent implements OnInit {
   subject: string;
   subjectWidth: number;
 
-  constructor(private configurationService: ConfigurationService) { }
+  constructor(
+    private configurationService: ConfigurationService,
+    private emailService: EmailService) { }
 
   ngOnInit(): void {
     this.emailMap = this.configurationService.getEmails();
+
   }
 
   submit(): void {

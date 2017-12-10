@@ -5,5 +5,16 @@ export const configuration = {
     Mac: 'gilbertmccoy@gmail.com',
     Na: 'cszhna@gmail.com'
   },
-  BUTTONS_PER_ROW: 2
+  EMAIL_SERVER_INFO: {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    username: 'macutiladdy',
+    password: 'GkrM44j7BXGFzy6TQEHuE9e4BY3tNt',
+  },
+  EMAIL_ACCOUNT_INFO: {
+    address: 'macutiladdy@gmail.com',
+    username: 'macutiladdy',
+    password: 'GkrM44j7BXGFzy6TQEHuE9e4BY3tNt',
+  }
 };

@@ -12,12 +12,15 @@ export class EmailButtonsComponent implements OnInit {
   emailMap: any;
 
   emailKeys: string[];
-  selectedEmailKey: string;
+  emailSelection: any;
 
   constructor() { }
 
   ngOnInit(): void {
     console.log(`EMAIL MAP: ${this.emailMap}`);
     this.emailKeys = Object.keys(this.emailMap).sort().reverse();
+    this.emailKeys.forEach((key) => {
+      this.emailSelection[key] = false;
+    });
   }
 }

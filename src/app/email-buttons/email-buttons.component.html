@@ -3,17 +3,17 @@
          *ngFor="let label of emailKeys; let i = index">
       <label *ngIf="index == 0"
              class="btn btn-primary"
-             [(ngModel)]="selectedEmailKey"
-             btnRadio="{{label}}">{{label}}</label>
+             [(ngModel)]="emailSelection[label]"
+             btnCheckbox>{{label}}</label>
 
       <label *ngIf="index != 1 && index != emailKeys.length - 1"
              class="btn btn-primary"
-             [(ngModel)]="selectedEmailKey"
-             btnRadio="{{label}}">{{label}}</label>
+             [(ngModel)]="emailSelection[label]"
+             btnCheckbox>{{label}}</label>
 
       <label *ngIf="index == emailKeys.length - 1"
              class="btn btn-primary"
-             [(ngModel)]="selectedEmailKey"
-             btnRadio="{{label}}">{{label}}</label>
+             [(ngModel)]="emailSelection[label]"
+             btnCheckbox>{{label}}</label>
     </div>
   </div>
