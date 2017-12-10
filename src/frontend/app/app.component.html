@@ -6,18 +6,17 @@
      fxLayoutAlign="center center">
   <div>
     <app-email-buttons class="email-buttons "
+                       [(emailSelection)]="emailSelection"
                        [emailMap]="emailMap"> </app-email-buttons>
   </div>
 
   <div>
     <input [(ngModel)]="subject"
-           [(style.width.px)]="subjectWidth"
            class="form-control subject">
   </div>
 
   <div>
     <textarea [(ngModel)]="body"
-              [(style.width.px)]="bodyWidth"
               rows="5"
               cols="30"
               class="form-control body"></textarea>

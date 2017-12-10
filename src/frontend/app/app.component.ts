@@ -8,13 +8,10 @@ import { EmailService } from './email.service/email.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  emailMap: any;
-  selectedEmail: string;
-  buttonsWidth: number;
-  body: string;
-  bodyWidth: number;
-  subject: string;
-  subjectWidth: number;
+  emailMap: any = {};
+  emailSelection: any = {};
+  body = '';
+  subject = '';
 
   constructor(
     private configurationService: ConfigurationService,
@@ -22,16 +19,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.emailMap = this.configurationService.getEmails();
-
   }
 
   submit(): void {
-    console.log(`selectedEmail: ${this.selectedEmail}`);
-    console.log(`buttonsWidth: ${this.buttonsWidth}`);
+    console.log(`selectedEmail: ${JSON.stringify(this.emailSelection, null, 2)}`);
     console.log(`body: ${this.body}`);
-    console.log(`bodyWidth: ${this.bodyWidth}`);
     console.log(`subject: ${this.subject}`);
-    console.log(`subjectWidth: ${this.subjectWidth}`);
   }
 
 }

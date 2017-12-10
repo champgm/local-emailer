@@ -10,9 +10,10 @@ export class EmailButtonsComponent implements OnInit {
 
   @Input()
   emailMap: any;
+  @Input()
+  emailSelection: any = {};
 
   emailKeys: string[];
-  emailSelection: any;
 
   constructor() { }
 
