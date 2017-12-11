@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 # Configuration
-**/config.json
-**/configuration.ts
+**/.env.client.ts
+**/.env

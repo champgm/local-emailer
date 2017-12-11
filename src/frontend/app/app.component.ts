@@ -8,7 +8,7 @@ import { EmailService } from './email.service/email.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  emailMap: any = {};
+  recipients: string[] = [];
   emailSelection: any = {};
   body = '';
   subject = '';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private emailService: EmailService) { }
 
   ngOnInit(): void {
-    this.emailMap = this.configurationService.getEmails();
+    this.recipients = this.configurationService.getRecipients();
   }
 
   submit(): void {

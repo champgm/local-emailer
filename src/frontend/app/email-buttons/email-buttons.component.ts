@@ -9,18 +9,15 @@ import { ConfigurationService } from '../configuration.service/configuration.ser
 export class EmailButtonsComponent implements OnInit {
 
   @Input()
-  emailMap: any;
+  recipients: string[];
   @Input()
   emailSelection: any = {};
-
-  emailKeys: string[];
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(`EMAIL MAP: ${this.emailMap}`);
-    this.emailKeys = Object.keys(this.emailMap).sort().reverse();
-    this.emailKeys.forEach((key) => {
+    console.log(`EMAIL RECIPIENTS: ${this.recipients}`);
+    this.recipients.forEach((key) => {
       this.emailSelection[key] = false;
     });
   }
