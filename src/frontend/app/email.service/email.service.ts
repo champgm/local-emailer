@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ConfigurationService } from '../configuration.service/configuration.service';
-import { EmailAccountInfo } from '../templates/EmailAccountInfo';
-import { EmailServerInfo } from '../templates/EmailServerInfo';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable()
 export class EmailService {
-  server: EmailServerInfo;
-  account: EmailAccountInfo;
-  transporter: any;
 
-  constructor(private configurationService: ConfigurationService) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  sendEmail(addresses: string, subject: string, body: string) {
+  async sendEmail(recipients: string[], subject: string, body: string) {
+    try {
+      const response = await this.httpClient.post('/email', {
+        recipients,
+        subject,
+        body
+      }).toPromise();
+      console.log(`Got email response: ${JSON.stringify(response)}`);
+    } catch (error) {
+      console.log(`Email sending unsuccessful`);
+    }
   }
 }

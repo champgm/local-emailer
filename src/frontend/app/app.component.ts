@@ -25,6 +25,12 @@ export class AppComponent implements OnInit {
     console.log(`selectedEmail: ${JSON.stringify(this.emailSelection, null, 2)}`);
     console.log(`body: ${this.body}`);
     console.log(`subject: ${this.subject}`);
+    const recipients = Object.keys(this.emailSelection).filter(key => {
+      if (this.emailSelection[key]) {
+        return key;
+      }
+    });
+    this.emailService.sendEmail(recipients, this.subject, this.body);
   }
 
 }

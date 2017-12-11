@@ -8,7 +8,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppComponent } from './app.component';
 import { ConfigurationService } from './configuration.service/configuration.service';
-import { EmailButtonsComponent } from './email-buttons/email-buttons.component';
+import { EmailButtonsComponent } from './email-buttons.component/email-buttons.component';
 import { EmailService } from './email.service/email.service';
 
 @NgModule({

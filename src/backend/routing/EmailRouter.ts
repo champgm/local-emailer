@@ -1,9 +1,9 @@
 import * as express from 'express';
 import * as path from 'path';
 import { Router } from 'express';
+import { emailHandler } from '../controllers/emailHandler';
 
-
-export class StaticRouting {
+export class EmailRouter {
   router: Router;
   frontend: string;
 
@@ -12,8 +12,9 @@ export class StaticRouting {
     this.frontend = path.join(__dirname, '../../dist');
   }
 
-  init(): void {
-    this.router.use('/', express.static(this.frontend));
+  init(): EmailRouter {
+    this.router.post('/email', emailHandler);
+    return this;
   }
 
   getRouter(): Router {
