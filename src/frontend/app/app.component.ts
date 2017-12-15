@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigurationService } from './configuration.service/configuration.service';
 import { EmailService } from './email.service/email.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -15,22 +16,26 @@ export class AppComponent implements OnInit {
 
   constructor(
     private configurationService: ConfigurationService,
-    private emailService: EmailService) { }
+    private emailService: EmailService,
+    public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.recipients = this.configurationService.getRecipients();
   }
 
-  submit(): void {
-    console.log(`selectedEmail: ${JSON.stringify(this.emailSelection, null, 2)}`);
-    console.log(`body: ${this.body}`);
-    console.log(`subject: ${this.subject}`);
-    const recipients = Object.keys(this.emailSelection).filter(key => {
-      if (this.emailSelection[key]) {
-        return key;
-      }
-    });
-    this.emailService.sendEmail(recipients, this.subject, this.body);
+  async submit(): Promise<void> {
+    try {
+      this.snackBar.open('Sending...');
+      const recipients = Object.keys(this.emailSelection).filter(key => {
+        if (this.emailSelection[key]) {
+          return key;
+        }
+      });
+      const result = await this.emailService.sendEmail(recipients, this.subject, this.body);
+      this.snackBar.dismiss();
+      this.snackBar.open(result, '', { duration: 2000 });
+    } catch (error) {
+      this.snackBar.open(error.toString(), '', { duration: 5000 });
+    }
   }
-
 }

@@ -45,11 +45,11 @@ export async function emailHandler(
           throw error;
         }
         bunyanLogger.info({ info }, 'Message sent.');
-        response.status(200).send('Message sent.');
+        response.status(200).send({ sendResult: 'Message sent.' });
       });
     }
   } catch (error) {
-    response.status(500).send(error);
+    response.status(500).send({ sendResult: 'Message could not be sent.' });
   }
 }
 
@@ -58,6 +58,3 @@ function next(nextFunction: NextFunction, input: any) {
     nextFunction(input);
   }
 }
-
-
-;
