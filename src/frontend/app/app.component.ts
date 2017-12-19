@@ -17,10 +17,20 @@ export class AppComponent implements OnInit {
   constructor(
     private configurationService: ConfigurationService,
     private emailService: EmailService,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar) {
+    this.recipients = this.configurationService.getRecipients();
+    this.emailSelection = this.configurationService.getDefaultRecipients();
+  }
 
   ngOnInit(): void {
-    this.recipients = this.configurationService.getRecipients();
+  }
+
+  clear(): void {
+    console.log(`Before clear: ${JSON.stringify(this.emailSelection, null, 2)}`);
+    this.subject = '';
+    this.body = '';
+    Object.keys(this.emailSelection).forEach(key => this.emailSelection[key] = false);
+    console.log(`After clear: ${JSON.stringify(this.emailSelection, null, 2)}`);
   }
 
   async submit(): Promise<void> {
@@ -35,7 +45,7 @@ export class AppComponent implements OnInit {
       this.snackBar.dismiss();
       this.snackBar.open(result, '', { duration: 2000 });
     } catch (error) {
-      this.snackBar.open(error.toString(), '', { duration: 5000 });
+      this.snackBar.open(error.message, '', { duration: 5000 });
     }
   }
 }

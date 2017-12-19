@@ -26,30 +26,27 @@ export async function emailHandler(
   response: Response,
   nextFunction: NextFunction) {
 
-  try {
-    if (request.body) {
-      bunyanLogger.info({ BODY: request.body }, 'REQUEST BODY');
-      const body: IEmailRequestBody = request.body;
+  if (request.body) {
+    bunyanLogger.info({ BODY: request.body }, 'REQUEST BODY');
+    const body: IEmailRequestBody = request.body;
 
-      const recipients = body.recipients.map(recipientKey => recipientMap[recipientKey]).join(',');
-      const mailOptions = {
-        from: process.env.EMAIL_ACCOUNT_ADDRESS,
-        to: recipients,
-        subject: `TO DO: ${body.subject}`,
-        text: body.body
-      };
+    const recipients = body.recipients.map(recipientKey => recipientMap[recipientKey]).join(',');
+    const mailOptions = {
+      from: process.env.EMAIL_ACCOUNT_ADDRESS,
+      to: recipients,
+      subject: `TO DO: ${body.subject}`,
+      text: body.body
+    };
 
-      await transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          bunyanLogger.info({ error }, 'Error sending message.');
-          throw error;
-        }
+    await transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        bunyanLogger.info({ error }, 'Error sending message.');
+        response.status(500).send({ sendResult: 'Message could not be sent.' });
+      } else {
         bunyanLogger.info({ info }, 'Message sent.');
         response.status(200).send({ sendResult: 'Message sent.' });
-      });
-    }
-  } catch (error) {
-    response.status(500).send({ sendResult: 'Message could not be sent.' });
+      }
+    });
   }
 }
 

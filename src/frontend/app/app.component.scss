@@ -5,10 +5,10 @@
 }
 
 .email-buttons {
-
+  margin-top: 5%;
 }
+
 .subject, .body {
-  width: 264px;
   margin-bottom: 25px;
 }
 
@@ -16,6 +16,14 @@
   margin-top: 25px;
 }
 
+.real-wide {
+  width: 90%;
+}
+
 .submit {
-  margin-left: 192px;
+  // margin-left: 192px;
+}
+
+.button-spacer{
+  max-width: 30%;
 }

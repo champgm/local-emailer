@@ -3,5 +3,9 @@ export const configuration = {
     'Work',
     'Personal',
     'My Buddy'
-  ]
+  ],
+  // Optional. Controls which recipient, if any, is selected by default
+  DEFAULT_RECIPIENTS: {
+    'Personal': true
+  }
 };

@@ -10,4 +10,8 @@ export class ConfigurationService {
   getRecipients(): string[] {
     return configuration.RECIPIENTS;
   }
+
+  getDefaultRecipients(): any {
+    return configuration.DEFAULT_RECIPIENTS || {};
+  }
 }

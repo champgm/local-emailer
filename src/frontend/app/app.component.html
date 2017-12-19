@@ -3,27 +3,38 @@
      fxLayoutAlign="space-around center"> -->
 <div fxLayout="column"
      class="container"
-     fxLayoutAlign="center center">
+     fxLayoutAlign="start center">
   <div>
     <app-email-buttons class="email-buttons "
                        [(emailSelection)]="emailSelection"
                        [recipients]="recipients"> </app-email-buttons>
   </div>
 
-  <div>
+  <div class="real-wide">
     <input [(ngModel)]="subject"
+           fxFlex="grow"
            class="form-control subject">
   </div>
 
-  <div>
+  <div class="real-wide">
     <textarea [(ngModel)]="body"
+              fxFlex
               rows="5"
               cols="30"
               class="form-control body"></textarea>
   </div>
-  <div fxLayout="row">
-    <label class="btn btn-primary submit"
+  <div class="real-wide"
+       fxLayoutAlign="center center"
+       fxLayout="row">
+    <label class="btn btn-danger clear"
+           fxFlex="8"
+           (click)="clear()"
+           fxFlexAlign="end">Clear</label>
+    <div fxFlex
+         class="button-spacer"></div>
+    <label class="btn btn-success submit"
+           fxFlex="8"
            (click)="submit()"
-           fxFlexAlign="end">Submit</label>
+           fxFlexAlign="start">Submit</label>
   </div>
 </div>
