@@ -2,10 +2,7 @@
   min-height: 400px;
   width: 100%;
   display: flex;
-}
-
-.email-buttons {
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 .subject, .body {
@@ -17,13 +14,6 @@
 }
 
 .real-wide {
-  width: 90%;
-}
-
-.submit {
-  // margin-left: 192px;
-}
-
-.button-spacer{
-  max-width: 30%;
+  max-width: 90%;
+  min-width: 20%;
 }

@@ -15,9 +15,5 @@ export class EmailButtonsComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    this.recipients.forEach((key) => {
-      this.emailSelection[key] = false;
-    });
-  }
+  ngOnInit(): void { }
 }

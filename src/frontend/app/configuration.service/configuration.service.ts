@@ -12,6 +12,7 @@ export class ConfigurationService {
   }
 
   getDefaultRecipients(): any {
+    console.log(`DEFAULT RECIPIENTS: ${JSON.stringify(configuration.DEFAULT_RECIPIENTS)}`);
     return configuration.DEFAULT_RECIPIENTS || {};
   }
 }

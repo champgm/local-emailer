@@ -1,12 +1,8 @@
-<!-- <div fxLayout="column"
-     class="container"
-     fxLayoutAlign="space-around center"> -->
 <div fxLayout="column"
-     class="container"
+     class="container top-margin-5"
      fxLayoutAlign="start center">
   <div>
-    <app-email-buttons class="email-buttons "
-                       [(emailSelection)]="emailSelection"
+    <app-email-buttons [(emailSelection)]="emailSelection"
                        [recipients]="recipients"> </app-email-buttons>
   </div>
 
@@ -27,14 +23,14 @@
        fxLayoutAlign="center center"
        fxLayout="row">
     <label class="btn btn-danger clear"
-           fxFlex="8"
            (click)="clear()"
            fxFlexAlign="end">Clear</label>
     <div fxFlex
          class="button-spacer"></div>
-    <label class="btn btn-success submit"
-           fxFlex="8"
-           (click)="submit()"
-           fxFlexAlign="start">Submit</label>
+    <button type="button"
+            class="btn btn-success submit"
+            [disabled]="disableSubmit"
+            (click)="submit()"
+            fxFlexAlign="start">Submit</button>
   </div>
 </div>
