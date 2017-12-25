@@ -11,11 +11,13 @@ import { AppComponent } from './app.component';
 import { ConfigurationService } from './configuration.service/configuration.service';
 import { EmailButtonsComponent } from './email-buttons.component/email-buttons.component';
 import { EmailService } from './email.service/email.service';
+import { AutofocusDirective } from './autofocus.directive/autofocus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmailButtonsComponent
+    EmailButtonsComponent,
+    AutofocusDirective
   ],
   imports: [
     MatSnackBarModule,

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { ConfigurationService } from './configuration.service/configuration.service';
 import { EmailService } from './email.service/email.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public focusSubject = new EventEmitter<boolean>();
   recipients: string[] = [];
   emailSelection: any = {};
   disableSubmit = false;
@@ -21,18 +23,15 @@ export class AppComponent implements OnInit {
     public snackBar: MatSnackBar) {
     this.recipients = this.configurationService.getRecipients();
     this.emailSelection = this.configurationService.getDefaultRecipients();
-    console.log(`EMAIL SELECTION: ${JSON.stringify(this.emailSelection)}`);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   clear(): void {
-    console.log(`Before clear: ${JSON.stringify(this.emailSelection, null, 2)}`);
     this.subject = '';
     this.body = '';
     this.emailSelection = this.configurationService.getDefaultRecipients();
-    console.log(`After clear: ${JSON.stringify(this.emailSelection, null, 2)}`);
+    this.focusSubject.emit(true);
   }
 
   async submit(): Promise<void> {
@@ -46,7 +45,7 @@ export class AppComponent implements OnInit {
       });
       const result = await this.emailService.sendEmail(recipients, this.subject, this.body);
       this.snackBar.dismiss();
-      this.snackBar.open(result, '', { duration: 2000, verticalPosition: 'top' });
+      this.snackBar.open(result, '', { duration: 1000, verticalPosition: 'top' });
       this.disableSubmit = false;
       this.clear();
     } catch (error) {

@@ -9,7 +9,10 @@
   <div class="real-wide">
     <input [(ngModel)]="subject"
            fxFlex="grow"
-           class="form-control subject">
+           class="form-control subject"
+           [focusEvent]="focusSubject"
+           (keyup.enter)="submit()"
+           appAutofocus>
   </div>
 
   <div class="real-wide">
