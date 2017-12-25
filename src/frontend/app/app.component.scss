@@ -1,3 +1,10 @@
+// $desktop: 960px;
+$tablet: 768px;
+$gt-tablet:769px;
+// $mobile-large: 640px;
+// $mobile: 480px;
+// $mobile-small: 300px;
+
 .container {
   min-height: 400px;
   width: 100%;
@@ -14,6 +21,10 @@
 }
 
 .real-wide {
-  max-width: 90%;
-  min-width: 20%;
+  @media only screen and (max-width: $tablet){
+    width: 80%;
+  }
+  @media only screen and (min-width: $gt-tablet){
+    width: 50%;
+  }
 }
