@@ -9,7 +9,7 @@ const bunyanLogger = bunyan.createLogger({ name: `${path.basename(__filename)}` 
 
 DotEnv.config();
 
-const transporter = nodemailer.createTransport({
+const mailerConfiguration: any = {
   host: process.env.EMAIL_SERVER_HOST,
   port: process.env.EMAIL_SERVER_PORT,
   secure: process.env.EMAIL_SERVER_ENCRYPTION, // true for 465, false for other ports
@@ -17,7 +17,8 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_ACCOUNT_USERNAME, // generated ethereal user
     pass: process.env.EMAIL_ACCOUNT_PASSWORD  // generated ethereal password
   }
-});
+};
+const transporter = nodemailer.createTransport(mailerConfiguration);
 
 const recipientMap = JSON.parse(process.env.EMAIL_RECIPIENTS);
 
