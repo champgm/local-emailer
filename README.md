@@ -1,28 +1,36 @@
 # LocalEmailer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
+This project stands up simple a web form intended to send you (or others) email reminders. It is important to note that this form is not secured in any way and, if exposed outside of a trusted network, could be abused.
 
-## Development server
+![Alt text](/desktop.png?raw=true "Desktop View")
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![Alt text](/mobile.png?raw=true "Mobile View")
 
-## Code scaffolding
+## Configuration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+There are two configuration files that you need to create.
 
-## Build
+### Client Configuration (.env.client.ts)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Sample: [.env.client.sample.ts](.env.client.sample.ts)
 
-## Running unit tests
+This file controls what is seen by the user. The labels for the buttons which represent possible recipients are configured here. The values of the selected buttons' labels are sent to the backend API when an email is submitted.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Server Configuration (.env)
 
-## Running end-to-end tests
+Sample: [.env.sample](.env.sample)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+This file contains connection information for the email server to be used and account information for the address from which the mail will come. It also includes a map whose keys are the labels configured in .env.client and whose values are the recipient email addresses corresponding to those labels.
 
-## Further help
+## Serving
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# local-emailer
+A [docker file](Dockerfile) is included in this repository for ease of use. If you would prefer to run the server locally, you will need to run the following commands:
+```
+npm install
+npm run build
+npm run start
+```
+
+## Development
+
+Some convenience commands are included in [package.json](package.json), `npm run start-watch` and `npm run build-watch`. These should both be run in individual terminal windows and should restart and rebuild the server whenever changes in the source files are detected.

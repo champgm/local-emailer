@@ -1,9 +1,3 @@
-// import * as DotEnv from 'dotenv';
-
-// DotEnv.config();
-
-// const RECIPIENTS = Object.keys(JSON.parse(process.env.EMAIL_RECIPIENTS));
-
 export const configuration = {
   RECIPIENTS: [
     'Work',
