@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ts-node src/backend/server.ts | bunyan",
     "serve": "ng serve --host 0.0.0.0",
-    "build": "ng build",
+    "build": "ng build --prod",
     "build-watch": "ng build --watch",
     "start-watch": "nodemon -e ts --watch src/backend -x \"npm run start\"",
     "test": "ng test",
