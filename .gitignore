@@ -24,3 +24,5 @@ yarn-error.log*
 *.sw*
 
 angular/
+.env
+.env.client.ts
