@@ -33,7 +33,7 @@ export async function emailHandler(
   nextFunction: NextFunction
 ) {
   if (request.body) {
-    bunyanLogger.info({ BODY: request.body }, "REQUEST BODY");
+    bunyanLogger.info({ body: request.body }, "REQUEST BODY");
     const body: IEmailRequestBody = request.body;
 
     const recipients = body.recipients
@@ -55,7 +55,9 @@ export async function emailHandler(
         response.status(200).send({ sendResult: "Message sent." });
       }
     });
+    return;
   }
+  response.status(400).send({ sendResult: "Invalid request." });
 }
 
 function next(nextFunction: NextFunction, input: any) {

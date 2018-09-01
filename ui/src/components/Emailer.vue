@@ -30,10 +30,19 @@
             </b-row>
             <b-row class="margintop2">
             <b-col>
-              <b-button variant="danger" align-h="left">Clear</b-button>
+              <b-button
+                v-on:click="clear()"
+                variant="danger"
+                align-h="left">
+                Clear
+              </b-button>
             </b-col>
             <b-col>
-              <b-button variant="success" >Submit</b-button>
+              <b-button
+                v-on:click="submit()"
+                variant="success">
+                Submit
+              </b-button>
             </b-col>
             </b-row>
             </b-col>
@@ -49,6 +58,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import * as _ from "lodash";
+import request from "request-promise-native";
 
 @Component
 export default class Emailer extends Vue {
@@ -64,9 +74,32 @@ export default class Emailer extends Vue {
     });
   }
 
-  mouseDown(event: any) {
-    console.log(`asdfasdfads`);
-    event.preventDefault();
+  clear() {
+    console.log(`CLEAR`);
+    this.body = "";
+    this.subject = "";
+  }
+
+  async submit() {
+    const requestBody: any = {};
+    requestBody.recipients = this.selectedRecipients;
+    requestBody.body = this.body;
+    requestBody.subject = this.subject;
+    try {
+      console.log(`Sending email...`);
+      const response = await request.post(
+        `${this.$store.state.backendEndpoint}/email`,
+        {
+          json: true,
+          body: requestBody
+        }
+      );
+      console.log(`Got response:`);
+      console.log(`${JSON.stringify(response)}`);
+    } catch (error) {
+      console.log(`Error while sending email:`);
+      console.log(`${JSON.stringify(error)}`);
+    }
   }
 }
 </script>

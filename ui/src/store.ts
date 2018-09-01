@@ -10,6 +10,7 @@ const state = {
   logger: bunyan.createLogger({ name: `${path.basename(__filename)}` }),
   recipients: getRecipients(),
   defaultRecipients: getDefaultRecipients(),
+  backendEndpoint: getBackendEndpoint(),
 };
 
 export default new Vuex.Store({
@@ -41,5 +42,18 @@ function getDefaultRecipients(): string[] {
       'Error while retrieving default recipients map from configuration',
     );
     return [];
+  }
+}
+
+function getBackendEndpoint(): string {
+  try {
+    const backend = configuration.BACKEND_ENDPOINT;
+    return backend;
+  } catch (error) {
+    state.logger.error(
+      { error },
+      'Error while retrieving backend endpoint from configuration',
+    );
+    return '';
   }
 }
