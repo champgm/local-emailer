@@ -7,8 +7,11 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "help": "vue-cli-service help",
+    "inspect": "vue-cli-service inspect",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+    "webpack": "webpack --json > stats.json"
   },
   "dependencies": {
     "@types/jest": "^23.3.1",
@@ -29,9 +32,13 @@
     "@vue/cli-plugin-unit-jest": "^3.0.0-rc.10",
     "@vue/cli-service": "^3.0.0-rc.10",
     "@vue/test-utils": "^1.0.0-beta.20",
+    "compression-webpack-plugin": "^1.1.12",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "typescript": "^3.0.0",
-    "vue-template-compiler": "^2.5.16"
+    "vue-cli-plugin-webpack-bundle-analyzer": "^1.1.1",
+    "vue-template-compiler": "^2.5.16",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^3.1.0"
   }
 }

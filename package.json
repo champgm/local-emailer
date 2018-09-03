@@ -11,7 +11,12 @@
     "copy-dist": "cp -R ui/dist api",
     "start-api": "npm --prefix api run start",
     "start": "npm run clean && npm run build && npm run copy-dist && npm run start-api",
-    "build": "npm --prefix ui run build "
+    "build": "npm --prefix ui run build",
+    "upload": "npm run build && aws s3 cp ui/dist s3://local-emailer/ --recursive --profile personal",
+    "package": "aws cloudformation package --template ./deployment.yml --s3-bucket deployments --output-template packaged-sam.yml --profile personal",
+    "deploy": "aws cloudformation deploy --template-file packaged-sam.yml --stack-name local-emailer --capabilities CAPABILITY_IAM --profile personal",
+    "destroy": "aws cloudformation delete-stack --stack-name local-emailer --profile personal",
+    "package-deploy": "npm run package && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -26,5 +31,10 @@
   "dependencies": {
     "copyfiles": "^2.0.0",
     "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.307.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.0.3"
   }
 }

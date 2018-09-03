@@ -1,3 +1,6 @@
 .env*
 node_modules
 dist
+packaged-sam.yml
+inspect.json
+stats.json

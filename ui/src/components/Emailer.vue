@@ -57,13 +57,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import * as _ from "lodash";
 import request from "request-promise-native";
 
 @Component
 export default class Emailer extends Vue {
   recipients: { text: string; value: string }[] = this.mapRecipientsToButtons();
-  selectedRecipients: string[] = _.clone(this.$store.state.defaultRecipients);
+  selectedRecipients: string[] = this.$store.state.defaultRecipients;
   subject = "";
   body = "";
 
