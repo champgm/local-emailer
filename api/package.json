@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "clean": "rimraf tsc-out && rimraf coverage",
+    "build": "npm run clean && tsc",
+    "package": "sh package.sh",
+    "start": "ts-node src/local.ts",
     "start-watch": "nodemon -e ts --watch src -x \"npm run start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.9.4",
+    "aws-serverless-express": "^3.3.5",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "dotenv": "^6.0.0",
@@ -23,5 +27,8 @@
     "path": "^0.12.7",
     "tslib": "^1.9.3",
     "typescript": "^3.0.3"
+  },
+  "devDependencies": {
+    "rimraf": "^2.6.2"
   }
 }

@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as path from 'path';
 import { Router } from 'express';
 import { emailHandler } from '../controllers/emailHandler';
 

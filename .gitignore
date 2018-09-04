@@ -4,3 +4,5 @@ dist
 packaged-sam.yml
 inspect.json
 stats.json
+*.zip
+tsc-out

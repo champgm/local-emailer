@@ -8,15 +8,18 @@
     "install-api": "npm --prefix api install",
     "install-ui": "npm --prefix ui install",
     "install-all": "npm run install-api & npm run install-ui & wait",
+    "upload-ui": "aws s3 cp ui/dist s3://local-emailer/ --recursive --profile personal",
     "copy-dist": "cp -R ui/dist api",
     "start-api": "npm --prefix api run start",
     "start": "npm run clean && npm run build && npm run copy-dist && npm run start-api",
-    "build": "npm --prefix ui run build",
-    "upload": "npm run build && aws s3 cp ui/dist s3://local-emailer/ --recursive --profile personal",
-    "package": "aws cloudformation package --template ./deployment.yml --s3-bucket deployments --output-template packaged-sam.yml --profile personal",
-    "deploy": "aws cloudformation deploy --template-file packaged-sam.yml --stack-name local-emailer --capabilities CAPABILITY_IAM --profile personal",
+    "build": "npm --prefix ui run build & npm --prefix api run build & wait",
+    "package-api": "npm --prefix api run package",
+    "package-cloudformation": "aws cloudformation package --template ./deployment.yml --s3-bucket local-emailer-deployments --output-template packaged-sam.yml --profile personal",
+    "package": "npm run package-api && npm run package-cloudformation",
+    "deploy-cloudformation": "aws cloudformation deploy --template-file packaged-sam.yml --stack-name local-emailer --capabilities CAPABILITY_IAM --profile personal",
+    "deploy": "npm run upload-ui && npm run deploy-cloudformation",
     "destroy": "aws cloudformation delete-stack --stack-name local-emailer --profile personal",
-    "package-deploy": "npm run package && npm run deploy"
+    "build-package-deploy": "npm run build && npm run package && npm run deploy"
   },
   "repository": {
     "type": "git",
